@@ -1,0 +1,64 @@
+{% extends "zola-sam/templates/page.html" %}
+
+{% block metatags %}
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:url" content="{{ page.permalink }} ">
+    <meta property="og:image" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:domain" content="aeruhxi.me">
+    <meta property="twitter:url" content="{{ page.permalink }}">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:image" content="">
+{% endblock metatags %}
+
+{% block content %}
+    {% if not page.extra.no_header %}
+        {% if page.date %}
+            {{ macros::format_date(date=page.date) }}
+        {% endif %}
+        {% if config.extra.show_word_count and not page.extra.hide_word_count %}
+            {% if page.date %}
+                &#183; {{ page.word_count }} words
+            {% else %}
+                {{ page.word_count }} words
+            {% endif %}
+        {% endif %}
+        {% if config.extra.show_reading_time and not page.extra.hide_reading_time %}
+            {% set previous = config.extra.show_word_count and not page.extra.hide_word_count %}
+            {% if previous or page.date %}
+                &#183; {{ page.reading_time }} min
+            {% else %}
+                {{ page.reading_time }} min
+            {% endif %}
+        {% endif %}
+        {% if page.taxonomies.tags %}
+            <div class="tag-container">
+                Tags :&nbsp;
+                {% for tag in page.taxonomies.tags %}
+                    <span class="tag">
+                        <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
+                            {{ tag }}
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if page.taxonomies.authors %}
+            <div class="tag-container">
+                {% for author in page.taxonomies.authors %}
+                    <span class="tag">
+                        <a href="{{ get_taxonomy_url(kind='authors', name=author) }}">
+                            {{ author }}
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <hr/>
+    {% endif %}
+    {{ page.content | safe }}
+{% endblock content %}

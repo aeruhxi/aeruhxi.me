@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Didact Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Didact Gothic Regular'), local('DidactGothic-Regular'), url(fonts/DidactGothic-Regular.otf) format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Code Pro Light'), local('SourceCodePro-Light'), url(fonts/SourceCodePro-Light.ttf) format('opentype');
+    font-display: swap;
+}
