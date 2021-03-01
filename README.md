@@ -1,2 +1,2 @@
-# aeruhx.me 
-My personal site build with [zola](https://github.com/getzola/zola)
+# aeruhxi.me 
+My personal site built with [zola](https://github.com/getzola/zola)
